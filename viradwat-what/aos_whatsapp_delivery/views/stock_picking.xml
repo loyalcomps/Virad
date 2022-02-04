@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_withcarrier_out_form_whatsapp_msg" model="ir.ui.view">
+        <field name="name">stock.picking.picking_withcarrier.whatsapp.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/header/button[last()]" position="after">
+                <button type="action"
+                    name="%(aos_whatsapp.action_whatsapp_compose_message_post)d"
+                    string="  Send By WhatsApp"
+                    class="btn-primary"
+                    aria-label="Send By WhatsApp"
+                    title="Send By WhatsApp"
+                    states="draft"/>
+            </xpath>
+            <xpath expr="//form/header/button[last()]" position="after">
+                <button type="action"
+                    name="%(aos_whatsapp.action_whatsapp_compose_message_post)d"
+                    icon="fa-whatsapp"
+                    string="Send By WhatsApp"
+                    title="Send By WhatsApp"
+                    states="assigned,done"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

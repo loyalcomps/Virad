@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+        <record id="muncipality_view_partner_form" model="ir.ui.view">
+        <field name="name">muncipality.res.partner.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook/page[@name='sales_purchases']/group/group/field[@name='user_id']" position="after">
+                <field name="muncipality_id" options="{'no_create': True, 'no_create_edit': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+         <record id="muncipality_view_pos_form" model="ir.ui.view">
+        <field name="name">muncipality.pos.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet/group[@name='order_fields']/field[@name='partner_id']" position="after">
+                <field name="muncipality_id" options="{'no_create': True, 'no_create_edit': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+         <record id="muncipality_pos_order_list_select_inherit" model="ir.ui.view">
+        <field name="name">pos.order.muncipality.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+               <field name="muncipality_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter string="Local Body" name="muncipality_id" domain="[]" context="{'group_by': 'muncipality_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+          <record id="muncipality_report_pos_order_search_inherit" model="ir.ui.view">
+        <field name="name">muncipalit.pos.order.search.inherit</field>
+        <field name="model">report.pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search"/>
+        <field name="arch" type="xml">
+
+             <xpath expr="//field[@name='date']" position="after">
+               <field name="muncipality_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='pos']" position='after'>
+                <filter string="Local Body" name="muncipality_id" domain="[]" context="{'group_by':'muncipality_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

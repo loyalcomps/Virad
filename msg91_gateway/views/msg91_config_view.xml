@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sms_mail_server_msg91_form_view" model="ir.ui.view">
+            <field name="name">sms.mail.server.msg91.config</field>
+            <field name="model">sms.mail.server</field>   
+            <field name="inherit_id" ref="sms_notification.sms_mail_server_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='conn_info']" position="after">
+                    <group string='Security And Authentication' attrs="{'invisible':[('gateway','!=','msg91')]}">
+                        <field name="msg91_api_key" placeholder="MSG91 API Key" attrs="{'required':[('gateway','=','msg91')]}"/>
+                        <button name="test_conn_msg91" string="Test Connection" type="object"  />  
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

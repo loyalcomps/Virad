@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+
+
+    <record model="ir.ui.view" id="muncipality_setup_form">
+      <field name="name">Local Body form</field>
+      <field name="model">muncipality.name</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+                        <group>
+
+          <field name="name" />
+
+                        </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="muncipality_configuration_setup_action_window">
+      <field name="name">Local Body</field>
+      <field name="res_model">muncipality.name</field>
+      <field name="view_mode">tree,form</field>
+       <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create
+                </p>
+            </field>
+    </record>
+
+
+      <menuitem name="Local Body" id="muncipality_setup_submenu" parent="sale.menu_sale_config"
+              action="muncipality_configuration_setup_action_window"/>
+
+
+
+
+  </data>
+</odoo>

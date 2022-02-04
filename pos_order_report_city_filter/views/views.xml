@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_report_pos_order_search_inherit_customer_city" model="ir.ui.view">
+            <field name="name">report.pos.order.search.inherit</field>
+            <field name="model">report.pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_categ_id']" position='after'>
+                    <field name="city"/>
+                </xpath>
+                <xpath expr="//filter[@name='User']" position='after'>
+                    <filter string="City" name="city" domain="[]" context="{'group_by':'city'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

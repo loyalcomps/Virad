@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_partner_inherited_view_pos_stock_location">
+            <field name="name">res.partner.pos.stock.location.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']/group/group[3]/field[@name='barcode']" position="after">
+                    <field name="pos_stock_location_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

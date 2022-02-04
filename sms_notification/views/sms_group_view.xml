@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>        
+        
+        <record id="sms_group_form_view" model="ir.ui.view">
+            <field name="name">sms.group</field>
+            <field name="model">sms.group</field>            
+            <field name="arch" type="xml">
+                <form string="Group Form">
+                    <sheet> 
+                        <div style="float:right;width:100px;" attrs="{'invisible':[('total_members','=',0)]}">
+                            <label for="total_members" string="Total Members" />
+                            <field name="total_members"  />
+                        </div> 
+                        <div>
+                            <label for="name" string="Group Name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Enter Group Name..." />
+                            </h1>
+                        </div>
+                        <label for="member_ids" string="Members" />
+                        <field name="member_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="mobile"/>
+                                <field name="email"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="sms_group_tree_view" model="ir.ui.view">
+            <field name="name">sms.group</field>
+            <field name="model">sms.group</field>            
+            <field name="arch" type="xml">
+                <tree string="Message Group" >
+                    <field name="name"/>
+                    <field name="member_ids"/>
+                </tree>
+            </field>            
+        </record> 
+
+        <record id="view_messaging_group_search" model="ir.ui.view">
+           <field name="name">sms.group.search</field>
+           <field name="model">sms.group</field>
+           <field name="arch" type="xml">
+               <search string="Groups">
+                    <field name="name"/>
+                    <field name="member_ids"/>
+               </search>
+           </field>
+        </record>
+
+        <record id="messaging_group" model="ir.actions.act_window">
+            <field name="name">Messaging Group</field>
+            <field name="res_model">sms.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sms_group_tree_view"/>
+        </record>
+
+        
+        <menuitem id="menu_sms_sub_menu_5" name="SMS Group" parent="asms" sequence="2" action="messaging_group"/>
+    </data>
+</odoo>

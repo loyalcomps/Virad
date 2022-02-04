@@ -1,0 +1,91 @@
+<odoo>
+
+    <!-- Server action-->
+    <record id="send_stock_picking_ready_status" model="base.automation">
+        <field name="name">Customer: Delivery Ready Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;","&amp;",["location_dest_id.usage","=","customer"],["state","!=","assigned"],["state","!=","cancel"]]</field>
+        <field name="filter_domain">[["state","=","assigned"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+    
+    <record id="send_stock_picking_delivery_status" model="base.automation">
+        <field name="name">Customer: Delivery Order Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;","&amp;",["location_dest_id.usage","=","customer"],["state","!=","done"],["state","!=","cancel"]]</field>
+        <field name="filter_domain">[["state","=","done"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+    
+    <record id="send_stock_picking_receipt_status" model="base.automation">
+        <field name="name">Supplier: Receipt Notification by Whatsapp</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="trigger">on_write</field>
+        <field name="active" eval="True"/>
+        <field name="filter_pre_domain">["&amp;",["picking_type_code","=","incoming"],["state","=","assigned"]]</field>
+        <field name="filter_domain">[["state","=","done"]]</field>
+        <field name="state">code</field>
+        <field name="code">
+record.send_whatsapp_automatic()
+        </field>
+    </record>
+    
+    <record id="stock_picking_delivery_status" model="mail.template">
+        <field name="name">Stock: Delivery Order</field>
+        <field name="subject">Delivery Order</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html"><![CDATA[
+        <p> Hello *${object.partner_id.name or ''}*,</p>
+        % if object.picking_type_code == 'outgoing':
+            % if object.state == 'assigned':
+                Your order *${object.name}* is Ready for Delivery.
+            %endif
+            % if object.state =='done':
+                Your order *${object.name}* is Delivered.
+            %endif
+        %endif
+        ]]>
+        </field>
+    </record> 
+
+    <record id="stock_picking_receipt_status" model="mail.template">
+        <field name="name">Stock: Receipt Items</field>
+        <field name="subject">Receipt Items</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html"><![CDATA[
+        % if object.picking_type_code == 'incoming':
+            <p> Hello *${object.partner_id.name or ''}*,</p>
+            % if object.state =='done':
+                Your Delivery Order *${object.name}* is Delivered to ${user.company_id.name}.
+            %endif
+        %endif
+        ]]>
+        </field>
+    </record>
+    
+    <record id="stock_picking_internal_status" model="mail.template">
+        <field name="name">Stock: Internal Transfer</field>
+        <field name="subject">Receipt Items.</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="body_html"><![CDATA[
+        % if object.picking_type_code == 'internal':
+            <p> Hello *${object.partner_id.name or ''}*,</p>
+            % if object.state =='done':
+                Internal Transfer from *${object.location_id.name}* is Delivered to ${object.location_dest_id.name}.
+            %endif
+        %endif
+        ]]>
+        </field>
+    </record>
+ 
+</odoo>

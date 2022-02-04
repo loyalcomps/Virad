@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="add_preferences_users" model="ir.ui.view">
+            <field name="name">Inheritance In SMS</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='business_documents']" position="after">
+                    <div id="sms">
+                        <h2>SMS</h2>
+                        <div class="row mt16 o_settings_container" id="sms_gateway">
+                            <div class="col-xs-12 col-md-12 o_setting_box"
+                                 title="By default, new users get highest access rights for all installed apps."
+                                 id="access_rights">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_phone_code_enable"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="is_phone_code_enable"/>
+                                    <div class="text-muted fa fa-info-circle">
+                                        If not enabled then it will pick country calling code from the country selected
+                                        by the customer. In case, customer has not selected any country then it will
+                                        pick country calling code from company's country.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt16">
+                                            <button name="%(gateway_config)d" string="Configure SMS Gateway Account"
+                                                    type="action" class="oe_link"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible':[('is_twilio_in_addon','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_twilio_in_addon" attrs="{'invisible':True}"/>
+                                    <field name="module_twilio_gateway"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_twilio_gateway"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible':[('is_plivo_in_addon','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_plivo_in_addon" attrs="{'invisible':True}"/>
+                                    <field name="module_plivo_gateway"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_plivo_gateway"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible':[('is_clicksend_in_addon','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_clicksend_in_addon" attrs="{'invisible':True}"/>
+                                    <field name="module_clicksend_gateway"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_clicksend_gateway"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible':[('is_msg91_in_addon','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_msg91_in_addon" attrs="{'invisible':True}"/>
+                                    <field name="module_msg91_gateway"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_msg91_gateway"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box"
+                                 attrs="{'invisible':[('is_mobily_in_addon','=',False)]}">
+                                <div class="o_setting_left_pane">
+                                    <field name="is_mobily_in_addon" attrs="{'invisible':True}"/>
+                                    <field name="module_mobily_gateway"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_mobily_gateway"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

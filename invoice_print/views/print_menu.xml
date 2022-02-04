@@ -1,0 +1,34 @@
+<odoo>
+  <data>
+
+
+    <report
+                id="leoway_invoice_print_menu"
+                model="account.move"
+                string="Invoice With Header"
+                report_type="qweb-pdf"
+                name="invoice_print.leoway_invoice_template"
+                file="invoice_print.leoway_invoice_template"
+                print_report_name = "(('Invoice '+ object.name or 'Print').replace('/','')+'.pdf')"
+        />
+
+                <record id="leoway_paperformat_invoice_print_with_header" model="report.paperformat">
+            <field name="name">INVOICE PRINT</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+<!--            <field name="orientation">Landscape</field>-->
+            <field name="margin_top">43</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">4</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">34</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="leoway_invoice_print_menu" model="ir.actions.report">
+            <field name="paperformat_id" ref="invoice_print.leoway_paperformat_invoice_print_with_header"/>
+        </record>
+
+  </data>
+</odoo>

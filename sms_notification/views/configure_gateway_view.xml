@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sms_mail_server_form_view" model="ir.ui.view">
+            <field name="name">sms.mail.server.config</field>
+            <field name="model">sms.mail.server</field>            
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>                
+                        <group string='SMS Configuration' colspan='4'>
+                                <field name="description"/>
+                                <field name="sequence"/>
+                        </group>
+                        <group string="Connection Information" colspan='4' name="conn_info">
+                            <field name="sms_debug"/>
+                            <field name="gateway" />      
+                            <field name="user_mobile_no" required="1" placeholder="e.g. +919898989898"/>
+                            <!--<label string="(Enter only one mobile number with country code e.g. +918888888888)" colspan="2"/> -->
+                        </group>     
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sms_mail_server_tree_view" model="ir.ui.view">
+            <field name="name">sms.mail.server.tree.config</field>
+            <field name="model">sms.mail.server</field>            
+            <field name="arch" type="xml">
+                <tree> 
+                    <field name="sequence"/>                          
+                    <field name="description"/>                     
+                    <field name="gateway"/>                                    
+                </tree>
+            </field>
+        </record>
+        <!-- Actions -->
+
+        <record id="gateway_config" model="ir.actions.act_window">
+            <field name="name">SMS Gateway Configuration</field>
+            <field name="res_model">sms.mail.server</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sms_mail_server_tree_view"/>
+        </record>
+
+        <!-- Menu -->
+
+        <menuitem id="asms" name="SMS Configuration" parent="base.menu_custom" sequence='1' />
+        <menuitem id="sms_gateway_config" name="Gateway Configuration" action="gateway_config" parent="asms" sequence="1"/>
+
+    </data>
+</odoo>

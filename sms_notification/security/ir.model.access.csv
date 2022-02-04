@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+sms_mail_server_user,SMS Config Access,model_sms_mail_server,,1,1,0,0
+sms_mail_server_manager,SMS Manager Settings,model_sms_mail_server,sms_notification,1,1,1,1
+sms_notification_user,SMS Access,model_sms_notification,,1,1,1,0
+access_sms_notification,sms.notification,model_sms_notification,sms_notification,1,1,1,1
+access_sms_group_notification,sms.group,model_sms_group,sms_notification,1,1,1,1
+access_sms_report,sms.report,model_sms_report,sms_notification,1,1,1,1
+access_sms_notification_template_manager,sms.notification.template.manager,model_sms_notification_template,sms_notification,1,1,1,1
+access_sms_notification_template_user,sms.notification.template.user,model_sms_notification_template,,1,0,0,0
+access_sms_notification_template_preview,access.sms.notification.template.preview,model_sms_notification_template_preview,,1,1,1,0

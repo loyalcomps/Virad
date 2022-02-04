@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+    <record id="total_qty_message_pos_form" model="ir.ui.view">
+        <field name="name">pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='amount_tax']" position="before">
+            <field name="total_pos_quantity"/>
+        </xpath>
+    </field>
+ </record>
+
+       <record id="total_qty_pos_order_tree_inherit" model="ir.ui.view">
+        <field name="name">pos.order.tree.inherit</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="before">
+                <field name="total_pos_quantity"/>
+            </xpath>
+        </field>
+    </record>
+
+
+       <record id="confirmation_message_pos_form" model="ir.ui.view">
+        <field name="name">pos.session.form</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='action_pos_session_closing_control'][1]" position="attributes">
+            <attribute name="confirm">Are you sure you want to close this session?</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_pos_session_closing_control'][2]" position="attributes">
+            <attribute name="confirm">Are you sure you want to close this session?</attribute>
+        </xpath>
+    </field>
+ </record>
+  </data>
+</odoo>
