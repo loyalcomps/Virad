@@ -706,17 +706,12 @@
 
                                         </td>
                                         <td style="width:20%;border:0px;"></td>
-                                        <td class="text-left en-font" style="width:40%;border-style: solid;border-color:#A9A9A9;border:1px solid #D3D3D3;page-break-inside:avoid;">
+                                        <td class="text-left en-font" style="width:40%;">
 
-                                             <b>General Terms &amp;amp; Conditions </b><br></br>
-
-<!--                                                <t t-if="o.narration">-->
-<!--                                                    <span t-field="o.narration"/>-->
+<!--                                             <b>General Terms &amp;amp; Conditions </b><br></br>-->
+<!--                                            <t t-if="o.account_note">-->
+<!--                                                    <span t-field="o.account_note"/>-->
 <!--                                                 </t>-->
-
-                                            <t t-if="o.account_note">
-                                                    <span t-field="o.account_note"/>
-                                                 </t>
 
                                         </td>
                                     </tr>
