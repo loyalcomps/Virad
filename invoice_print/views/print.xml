@@ -709,9 +709,9 @@
                                         <td class="text-left en-font" style="width:40%;">
 
 <!--                                             <b>General Terms &amp;amp; Conditions </b><br></br>-->
-<!--                                            <t t-if="o.account_note">-->
-<!--                                                    <span t-field="o.account_note"/>-->
-<!--                                                 </t>-->
+                                            <t t-if="o.account_note">
+                                                    <span t-field="o.account_note"/>
+                                                 </t>
 
                                         </td>
                                     </tr>
